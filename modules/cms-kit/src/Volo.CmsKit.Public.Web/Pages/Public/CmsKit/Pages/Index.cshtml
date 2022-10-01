@@ -1,0 +1,31 @@
+﻿@page
+@addTagHelper *, Volo.Abp.AspNetCore.Mvc.UI.Bootstrap
+@using Volo.CmsKit.Contents
+@using System.Dynamic
+@using Volo.Abp.Data
+@using Volo.Abp.AspNetCore.Mvc.UI.Packages.HighlightJs;
+@using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
+
+@model Volo.CmsKit.Public.Web.Pages.Public.CmsKit.Pages.IndexModel
+
+@section styles{
+    
+    <abp-style src="/Pages/Public/CmsKit/Pages/index.css" />
+
+    <style>
+        @Html.Raw(Model.PageDto.Style)
+    </style>
+}
+
+@section scripts{
+    <script>
+        @Html.Raw(Model.PageDto.Script)
+    </script>
+}
+
+<abp-card>
+    <abp-card-body>
+        @await Component.InvokeAsync("ContentFragment", new { contentDto = Model.PageDto })
+    </abp-card-body>
+</abp-card>
+
